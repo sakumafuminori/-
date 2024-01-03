@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Analyzer</title>
+    <script>
+        function analyzeUrl() {
+            // フォームからURLを取得
+            var url = document.getElementById('urlInput').value;
+
+            // 正規表現を使用して"http"で始まり、".mp4"で終わる文字列を抽出
+            var regex = /(http.*\.mp4)/;
+            var match = url.match(regex);
+
+            // 抽出した文字列を表示
+            if (match) {
+                var resultLink = document.getElementById('resultLink');
+                resultLink.innerHTML = '<a href="' + match[0] + '" target="_blank">' + match[0] + '</a>';
+            } else {
+                alert('URLから対応する文字列が見つかりませんでした。');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>URL Analyzer</h1>
+    <form>
+        <label for="urlInput">サイトのURL：</label>
+        <input type="text" id="urlInput" required>
+        <button type="button" onclick="analyzeUrl()">解析</button>
+    </form>
+    <div id="resultLink"></div>
+</body>
+</html>
